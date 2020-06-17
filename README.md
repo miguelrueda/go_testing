@@ -23,7 +23,7 @@ To see concurrent problems
 > go run --race .
 
 
-TESTING
+## TESTING
 
 Add _test to filenames
 Prefix tests with "Test"
@@ -48,7 +48,7 @@ To run tests
 > go test -v 
 > go test -run {regexp}
 
-COVERAGE
+## COVERAGE
 To run with coverage
 > go test -cover
 To output the result
@@ -59,9 +59,43 @@ To see the low/high coverage scale
 > go test -coverprofile count.out -covermode count
 
 Some packages
-    testify
-    ginkgo
-    goConvey
-    httpexpect
-    gomock
-    go-sqlmock
+- testify
+- ginkgo
+- goConvey
+- httpexpect
+- gomock
+- go-sqlmock
+
+## BENCHMARK TESTS
+
+- b.N - Number of times to run
+
+For the setup: 
+- b.StartTimer
+- b.StopTimer
+- b.ResetTimer
+
+To parallelize
+- b.RunParallel
+
+To run
+> go test
+To run all tests
+> go test -bench .
+Run benchmark targetimg the specified time
+> go test -bench -benchtime 10s
+Report memory allocation statistics for benchmarks
+> go test -benchmem
+Record execution trace to {trace.out} for analysis
+> go test -trace {†race.out}
+Generate profile of requested type:
+> go test -{type}profile {file}
+ - block
+ - cover
+ - cpu
+ - mem
+ - mutex
+
+ > go test -bench Alloc -memprofile profile.out
+ > go tool pprof profile.out
+ (pprof) svg
